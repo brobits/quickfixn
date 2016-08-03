@@ -1,4 +1,5 @@
 QuickFIXn.suo
+QuickFIXn.txt
 QuickFIXn/bin/*
 QuickFIXn/obj/*
 UnitTests/*.metaproj
@@ -31,3 +32,4 @@ upload_to_s3.rb
 *~
 *.suo
 *.metaproj
+Mono.TextTransform*
