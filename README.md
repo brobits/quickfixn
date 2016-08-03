@@ -28,7 +28,7 @@ Code Generation
 Message classes derived from a data dictionary generate their code using T4 Text Templates.  Text Templates are supported natively in Visual Studio's preprocessor, or by installing the Mono Nuget TextTransform package.
 
 ### Windows
-To manually generate code from the project data dictionaries (which are located in `spec/fix/`), run the the following command from the Visual Studio Command Prompt, or with the TextTransform executable in your path:
+Visual Studio will automatically generate code from `*.tt` code template files.  To manually generate code from the project data dictionaries (which are located in `spec/fix/`), run the the following command from the Visual Studio Command Prompt, or with the TextTransform executable in your path:
 
     TextTransform.exe QuickFIXn.sln
 
