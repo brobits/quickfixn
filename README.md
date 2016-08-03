@@ -25,22 +25,25 @@ This project requires the following:
 
 Code Generation
 ---------------
-Code generation is now done using T4 Text Templates from within visual studio.
-For full generation run in this order:
+Message classes derived from a data dictionary generate their code using T4 Text Templates.  Text Templates are supported natively in Visual Studio's preprocessor, or by installing the Mono Nuget TextTransform package.
 
-Fields/Fields.tt
+### Windows
+To manually generate code from the project data dictionaries (which are located in `spec/fix/`), run the the following command from the Visual Studio Command Prompt, or with the TextTransform executable in your path:
 
-Fields/FieldTags.tt
+    TextTransform.exe QuickFIXn.sln
 
-Message/generate.tt
+### Mono
+To manually generate code from the project data dictionaries using Mono, ensure the TextTransform Mono Nuget package is installed:
 
-	Each tt that generate.tt creates
+    nuget install Mono.TextTransform
 
+Use Mono to execute the TextTransform utility on the QuickFIX/n solution file:
 
-Each FIX version will have its Message classes created in its own subfolder.
+    mono Mono.TextTransform.1.0.0/tools/TextTransform.exe QuickFIXn.sln
 
 Build
 -----
+### Windows
 To build the project, run:
 
     build.bat
@@ -48,7 +51,6 @@ To build the project, run:
 You can also override the default target, configuration, and .NET framework version by giving command line arguments:
 
     build.bat Rebuild Release v3.5
-
 
 The build.bat script expects MSBuild.exe to be on your PATH.  If you run it
 from a Visual Studio cmd shell, this should not be a problem.  However, if you
@@ -60,9 +62,18 @@ like:
 to your PATH environment variable.  (Note, this build tools dir does not mean that the project
 will build for .NET 4.0; these are merely the build tools that come with VS 2010.)
 
+### Mono
+To build the project with Mono using xbuild, run:
+
+    build.sh
+
+Alternatively, the solution may be built with MSBuild, which is distributed by Mono.  [MSBuild source](https://github.com/Microsoft/msbuild) is also available with a permissive license, and may also be used to build the solution.  To use MSBuild, run:
+
+    msbuild.sh
 
 Unit Tests
 ----------
+### Windows
 To run the NUnit tests, run:
 
     unit_test.bat
@@ -89,6 +100,10 @@ To run a Unit Test in the debugger (not sure if it works in VS Express):
 7. NUnit GUI will open and VS will be in debugger mode.  You can choose and run tests.
    If you recompile, you may need to close and relaunch NUnit.
 
+### Mono
+Mono also distributes the nunit-console application.  To run unit tests using Mono's nunit-console, run:
+
+    unit_test.sh
 
 Acceptance Tests
 ----------------
