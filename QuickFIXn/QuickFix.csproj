@@ -149,7 +149,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Message\Groups.ttinclude" />
     <None Include="Message\Message.ttinclude" />
+    <None Include="Message\MessageFactory.ttinclude" />
+    <None Include="Message\MessageField.ttinclude" />
+    <None Include="Message\Messages.ttinclude" />
     <None Include="Template\SpecParser.ttinclude" />
     <None Include="Template\TemplateFileManagerV2.1.ttinclude" />
   </ItemGroup>

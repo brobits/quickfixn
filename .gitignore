@@ -29,3 +29,6 @@ Examples/SimpleAcceptor/obj/*
 upload_to_s3.rb
 *~
 *.suo
+QuickFIXn/Message/*/*.tt
+QuickFIXn/Message/*/*.txt4
+QuickFIXn/Generate.cs

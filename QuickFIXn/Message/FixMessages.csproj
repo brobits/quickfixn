@@ -12,589 +12,200 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FIX40\Advertisement.cs" />
-    <Compile Include="FIX40\Allocation.cs" />
-    <Compile Include="FIX40\AllocationACK.cs" />
-    <Compile Include="FIX40\DontKnowTrade.cs" />
-    <Compile Include="FIX40\Email.cs" />
-    <Compile Include="FIX40\ExecutionReport.cs" />
-    <Compile Include="FIX40\Heartbeat.cs" />
-    <Compile Include="FIX40\IndicationofInterest.cs" />
-    <Compile Include="FIX40\ListCancelRequest.cs" />
-    <Compile Include="FIX40\ListExecute.cs" />
-    <Compile Include="FIX40\ListStatus.cs" />
-    <Compile Include="FIX40\ListStatusRequest.cs" />
-    <Compile Include="FIX40\Logon.cs" />
-    <Compile Include="FIX40\Logout.cs" />
-    <Compile Include="FIX40\Message.cs" />
-    <Compile Include="FIX40\MessageFactory.cs" />
-    <Compile Include="FIX40\NewOrderList.cs" />
-    <Compile Include="FIX40\NewOrderSingle.cs" />
-    <Compile Include="FIX40\News.cs" />
-    <Compile Include="FIX40\OrderCancelReject.cs" />
-    <Compile Include="FIX40\OrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX40\OrderCancelRequest.cs" />
-    <Compile Include="FIX40\OrderStatusRequest.cs" />
-    <Compile Include="FIX40\Quote.cs" />
-    <Compile Include="FIX40\QuoteRequest.cs" />
-    <Compile Include="FIX40\Reject.cs" />
-    <Compile Include="FIX40\ResendRequest.cs" />
-    <Compile Include="FIX40\SequenceReset.cs" />
-    <Compile Include="FIX40\TestRequest.cs" />
-    <Compile Include="FIX41\Advertisement.cs" />
-    <Compile Include="FIX41\Allocation.cs" />
-    <Compile Include="FIX41\AllocationACK.cs" />
-    <Compile Include="FIX41\DontKnowTrade.cs" />
-    <Compile Include="FIX41\Email.cs" />
-    <Compile Include="FIX41\ExecutionReport.cs" />
-    <Compile Include="FIX41\Heartbeat.cs" />
-    <Compile Include="FIX41\IndicationofInterest.cs" />
-    <Compile Include="FIX41\ListCancelRequest.cs" />
-    <Compile Include="FIX41\ListExecute.cs" />
-    <Compile Include="FIX41\ListStatus.cs" />
-    <Compile Include="FIX41\ListStatusRequest.cs" />
-    <Compile Include="FIX41\Logon.cs" />
-    <Compile Include="FIX41\Logout.cs" />
-    <Compile Include="FIX41\Message.cs" />
-    <Compile Include="FIX41\MessageFactory.cs" />
-    <Compile Include="FIX41\NewOrderList.cs" />
-    <Compile Include="FIX41\NewOrderSingle.cs" />
-    <Compile Include="FIX41\News.cs" />
-    <Compile Include="FIX41\OrderCancelReject.cs" />
-    <Compile Include="FIX41\OrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX41\OrderCancelRequest.cs" />
-    <Compile Include="FIX41\OrderStatusRequest.cs" />
-    <Compile Include="FIX41\Quote.cs" />
-    <Compile Include="FIX41\QuoteRequest.cs" />
-    <Compile Include="FIX41\Reject.cs" />
-    <Compile Include="FIX41\ResendRequest.cs" />
-    <Compile Include="FIX41\SequenceReset.cs" />
-    <Compile Include="FIX41\SettlementInstructions.cs" />
-    <Compile Include="FIX41\TestRequest.cs" />
-    <Compile Include="FIX42\Advertisement.cs" />
-    <Compile Include="FIX42\Allocation.cs" />
-    <Compile Include="FIX42\AllocationACK.cs" />
-    <Compile Include="FIX42\BidRequest.cs" />
-    <Compile Include="FIX42\BidResponse.cs" />
-    <Compile Include="FIX42\BusinessMessageReject.cs" />
-    <Compile Include="FIX42\DontKnowTrade.cs" />
-    <Compile Include="FIX42\Email.cs" />
-    <Compile Include="FIX42\ExecutionReport.cs" />
-    <Compile Include="FIX42\Heartbeat.cs" />
-    <Compile Include="FIX42\IndicationofInterest.cs" />
-    <Compile Include="FIX42\ListCancelRequest.cs" />
-    <Compile Include="FIX42\ListExecute.cs" />
-    <Compile Include="FIX42\ListStatus.cs" />
-    <Compile Include="FIX42\ListStatusRequest.cs" />
-    <Compile Include="FIX42\ListStrikePrice.cs" />
-    <Compile Include="FIX42\Logon.cs" />
-    <Compile Include="FIX42\Logout.cs" />
-    <Compile Include="FIX42\MarketDataIncrementalRefresh.cs" />
-    <Compile Include="FIX42\MarketDataRequest.cs" />
-    <Compile Include="FIX42\MarketDataRequestReject.cs" />
-    <Compile Include="FIX42\MarketDataSnapshotFullRefresh.cs" />
-    <Compile Include="FIX42\MassQuote.cs" />
-    <Compile Include="FIX42\Message.cs" />
-    <Compile Include="FIX42\MessageFactory.cs" />
-    <Compile Include="FIX42\NewOrderList.cs" />
-    <Compile Include="FIX42\NewOrderSingle.cs" />
-    <Compile Include="FIX42\News.cs" />
-    <Compile Include="FIX42\OrderCancelReject.cs" />
-    <Compile Include="FIX42\OrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX42\OrderCancelRequest.cs" />
-    <Compile Include="FIX42\OrderStatusRequest.cs" />
-    <Compile Include="FIX42\Quote.cs" />
-    <Compile Include="FIX42\QuoteAcknowledgement.cs" />
-    <Compile Include="FIX42\QuoteCancel.cs" />
-    <Compile Include="FIX42\QuoteRequest.cs" />
-    <Compile Include="FIX42\QuoteStatusRequest.cs" />
-    <Compile Include="FIX42\Reject.cs" />
-    <Compile Include="FIX42\ResendRequest.cs" />
-    <Compile Include="FIX42\SecurityDefinition.cs" />
-    <Compile Include="FIX42\SecurityDefinitionRequest.cs" />
-    <Compile Include="FIX42\SecurityStatus.cs" />
-    <Compile Include="FIX42\SecurityStatusRequest.cs" />
-    <Compile Include="FIX42\SequenceReset.cs" />
-    <Compile Include="FIX42\SettlementInstructions.cs" />
-    <Compile Include="FIX42\TestRequest.cs" />
-    <Compile Include="FIX42\TradingSessionStatus.cs" />
-    <Compile Include="FIX42\TradingSessionStatusRequest.cs" />
-    <Compile Include="FIX43\Advertisement.cs" />
-    <Compile Include="FIX43\Allocation.cs" />
-    <Compile Include="FIX43\AllocationACK.cs" />
-    <Compile Include="FIX43\BidRequest.cs" />
-    <Compile Include="FIX43\BidResponse.cs" />
-    <Compile Include="FIX43\BusinessMessageReject.cs" />
-    <Compile Include="FIX43\CrossOrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX43\CrossOrderCancelRequest.cs" />
-    <Compile Include="FIX43\DerivativeSecurityList.cs" />
-    <Compile Include="FIX43\DerivativeSecurityListRequest.cs" />
-    <Compile Include="FIX43\DontKnowTrade.cs" />
-    <Compile Include="FIX43\Email.cs" />
-    <Compile Include="FIX43\ExecutionReport.cs" />
-    <Compile Include="FIX43\Heartbeat.cs" />
-    <Compile Include="FIX43\IndicationOfInterest.cs" />
-    <Compile Include="FIX43\ListCancelRequest.cs" />
-    <Compile Include="FIX43\ListExecute.cs" />
-    <Compile Include="FIX43\ListStatus.cs" />
-    <Compile Include="FIX43\ListStatusRequest.cs" />
-    <Compile Include="FIX43\ListStrikePrice.cs" />
-    <Compile Include="FIX43\Logon.cs" />
-    <Compile Include="FIX43\Logout.cs" />
-    <Compile Include="FIX43\MarketDataIncrementalRefresh.cs" />
-    <Compile Include="FIX43\MarketDataRequest.cs" />
-    <Compile Include="FIX43\MarketDataRequestReject.cs" />
-    <Compile Include="FIX43\MarketDataSnapshotFullRefresh.cs" />
-    <Compile Include="FIX43\MassQuote.cs" />
-    <Compile Include="FIX43\MassQuoteAcknowledgement.cs" />
-    <Compile Include="FIX43\Message.cs" />
-    <Compile Include="FIX43\MessageFactory.cs" />
-    <Compile Include="FIX43\MultilegOrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX43\NewOrderCross.cs" />
-    <Compile Include="FIX43\NewOrderList.cs" />
-    <Compile Include="FIX43\NewOrderMultileg.cs" />
-    <Compile Include="FIX43\NewOrderSingle.cs" />
-    <Compile Include="FIX43\News.cs" />
-    <Compile Include="FIX43\OrderCancelReject.cs" />
-    <Compile Include="FIX43\OrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX43\OrderCancelRequest.cs" />
-    <Compile Include="FIX43\OrderMassCancelReport.cs" />
-    <Compile Include="FIX43\OrderMassCancelRequest.cs" />
-    <Compile Include="FIX43\OrderMassStatusRequest.cs" />
-    <Compile Include="FIX43\OrderStatusRequest.cs" />
-    <Compile Include="FIX43\Quote.cs" />
-    <Compile Include="FIX43\QuoteCancel.cs" />
-    <Compile Include="FIX43\QuoteRequest.cs" />
-    <Compile Include="FIX43\QuoteRequestReject.cs" />
-    <Compile Include="FIX43\QuoteStatusReport.cs" />
-    <Compile Include="FIX43\QuoteStatusRequest.cs" />
-    <Compile Include="FIX43\RegistrationInstructions.cs" />
-    <Compile Include="FIX43\RegistrationInstructionsResponse.cs" />
-    <Compile Include="FIX43\Reject.cs" />
-    <Compile Include="FIX43\ResendRequest.cs" />
-    <Compile Include="FIX43\RFQRequest.cs" />
-    <Compile Include="FIX43\SecurityDefinition.cs" />
-    <Compile Include="FIX43\SecurityDefinitionRequest.cs" />
-    <Compile Include="FIX43\SecurityList.cs" />
-    <Compile Include="FIX43\SecurityListRequest.cs" />
-    <Compile Include="FIX43\SecurityStatus.cs" />
-    <Compile Include="FIX43\SecurityStatusRequest.cs" />
-    <Compile Include="FIX43\SecurityTypeRequest.cs" />
-    <Compile Include="FIX43\SecurityTypes.cs" />
-    <Compile Include="FIX43\SequenceReset.cs" />
-    <Compile Include="FIX43\SettlementInstructions.cs" />
-    <Compile Include="FIX43\TestRequest.cs" />
-    <Compile Include="FIX43\TradeCaptureReport.cs" />
-    <Compile Include="FIX43\TradeCaptureReportRequest.cs" />
-    <Compile Include="FIX43\TradingSessionStatus.cs" />
-    <Compile Include="FIX43\TradingSessionStatusRequest.cs" />
-    <Compile Include="FIX44\Advertisement.cs" />
-    <Compile Include="FIX44\AllocationInstruction.cs" />
-    <Compile Include="FIX44\AllocationInstructionAck.cs" />
-    <Compile Include="FIX44\AllocationReport.cs" />
-    <Compile Include="FIX44\AllocationReportAck.cs" />
-    <Compile Include="FIX44\AssignmentReport.cs" />
-    <Compile Include="FIX44\BidRequest.cs" />
-    <Compile Include="FIX44\BidResponse.cs" />
-    <Compile Include="FIX44\BusinessMessageReject.cs" />
-    <Compile Include="FIX44\CollateralAssignment.cs" />
-    <Compile Include="FIX44\CollateralInquiry.cs" />
-    <Compile Include="FIX44\CollateralInquiryAck.cs" />
-    <Compile Include="FIX44\CollateralReport.cs" />
-    <Compile Include="FIX44\CollateralRequest.cs" />
-    <Compile Include="FIX44\CollateralResponse.cs" />
-    <Compile Include="FIX44\Confirmation.cs" />
-    <Compile Include="FIX44\ConfirmationAck.cs" />
-    <Compile Include="FIX44\ConfirmationRequest.cs" />
-    <Compile Include="FIX44\CrossOrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX44\CrossOrderCancelRequest.cs" />
-    <Compile Include="FIX44\DerivativeSecurityList.cs" />
-    <Compile Include="FIX44\DerivativeSecurityListRequest.cs" />
-    <Compile Include="FIX44\DontKnowTrade.cs" />
-    <Compile Include="FIX44\Email.cs" />
-    <Compile Include="FIX44\ExecutionReport.cs" />
-    <Compile Include="FIX44\Heartbeat.cs" />
-    <Compile Include="FIX44\IndicationOfInterest.cs" />
-    <Compile Include="FIX44\ListCancelRequest.cs" />
-    <Compile Include="FIX44\ListExecute.cs" />
-    <Compile Include="FIX44\ListStatus.cs" />
-    <Compile Include="FIX44\ListStatusRequest.cs" />
-    <Compile Include="FIX44\ListStrikePrice.cs" />
-    <Compile Include="FIX44\Logon.cs" />
-    <Compile Include="FIX44\Logout.cs" />
-    <Compile Include="FIX44\MarketDataIncrementalRefresh.cs" />
-    <Compile Include="FIX44\MarketDataRequest.cs" />
-    <Compile Include="FIX44\MarketDataRequestReject.cs" />
-    <Compile Include="FIX44\MarketDataSnapshotFullRefresh.cs" />
-    <Compile Include="FIX44\MassQuote.cs" />
-    <Compile Include="FIX44\MassQuoteAcknowledgement.cs" />
-    <Compile Include="FIX44\Message.cs" />
-    <Compile Include="FIX44\MessageFactory.cs" />
-    <Compile Include="FIX44\MultilegOrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX44\NetworkStatusRequest.cs" />
-    <Compile Include="FIX44\NetworkStatusResponse.cs" />
-    <Compile Include="FIX44\NewOrderCross.cs" />
-    <Compile Include="FIX44\NewOrderList.cs" />
-    <Compile Include="FIX44\NewOrderMultileg.cs" />
-    <Compile Include="FIX44\NewOrderSingle.cs" />
-    <Compile Include="FIX44\News.cs" />
-    <Compile Include="FIX44\OrderCancelReject.cs" />
-    <Compile Include="FIX44\OrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX44\OrderCancelRequest.cs" />
-    <Compile Include="FIX44\OrderMassCancelReport.cs" />
-    <Compile Include="FIX44\OrderMassCancelRequest.cs" />
-    <Compile Include="FIX44\OrderMassStatusRequest.cs" />
-    <Compile Include="FIX44\OrderStatusRequest.cs" />
-    <Compile Include="FIX44\PositionMaintenanceReport.cs" />
-    <Compile Include="FIX44\PositionMaintenanceRequest.cs" />
-    <Compile Include="FIX44\PositionReport.cs" />
-    <Compile Include="FIX44\Quote.cs" />
-    <Compile Include="FIX44\QuoteCancel.cs" />
-    <Compile Include="FIX44\QuoteRequest.cs" />
-    <Compile Include="FIX44\QuoteRequestReject.cs" />
-    <Compile Include="FIX44\QuoteResponse.cs" />
-    <Compile Include="FIX44\QuoteStatusReport.cs" />
-    <Compile Include="FIX44\QuoteStatusRequest.cs" />
-    <Compile Include="FIX44\RegistrationInstructions.cs" />
-    <Compile Include="FIX44\RegistrationInstructionsResponse.cs" />
-    <Compile Include="FIX44\Reject.cs" />
-    <Compile Include="FIX44\RequestForPositions.cs" />
-    <Compile Include="FIX44\RequestForPositionsAck.cs" />
-    <Compile Include="FIX44\ResendRequest.cs" />
-    <Compile Include="FIX44\RFQRequest.cs" />
-    <Compile Include="FIX44\SecurityDefinition.cs" />
-    <Compile Include="FIX44\SecurityDefinitionRequest.cs" />
-    <Compile Include="FIX44\SecurityList.cs" />
-    <Compile Include="FIX44\SecurityListRequest.cs" />
-    <Compile Include="FIX44\SecurityStatus.cs" />
-    <Compile Include="FIX44\SecurityStatusRequest.cs" />
-    <Compile Include="FIX44\SecurityTypeRequest.cs" />
-    <Compile Include="FIX44\SecurityTypes.cs" />
-    <Compile Include="FIX44\SequenceReset.cs" />
-    <Compile Include="FIX44\SettlementInstructionRequest.cs" />
-    <Compile Include="FIX44\SettlementInstructions.cs" />
-    <Compile Include="FIX44\TestRequest.cs" />
-    <Compile Include="FIX44\TradeCaptureReport.cs" />
-    <Compile Include="FIX44\TradeCaptureReportAck.cs" />
-    <Compile Include="FIX44\TradeCaptureReportRequest.cs" />
-    <Compile Include="FIX44\TradeCaptureReportRequestAck.cs" />
-    <Compile Include="FIX44\TradingSessionStatus.cs" />
-    <Compile Include="FIX44\TradingSessionStatusRequest.cs" />
-    <Compile Include="FIX44\UserRequest.cs" />
-    <Compile Include="FIX44\UserResponse.cs" />
-    <Compile Include="FIX50SP1\AdjustedPositionReport.cs" />
-    <Compile Include="FIX50SP1\Advertisement.cs" />
-    <Compile Include="FIX50SP1\AllocationInstruction.cs" />
-    <Compile Include="FIX50SP1\AllocationInstructionAck.cs" />
-    <Compile Include="FIX50SP1\AllocationInstructionAlert.cs" />
-    <Compile Include="FIX50SP1\AllocationReport.cs" />
-    <Compile Include="FIX50SP1\AllocationReportAck.cs" />
-    <Compile Include="FIX50SP1\ApplicationMessageReport.cs" />
-    <Compile Include="FIX50SP1\ApplicationMessageRequest.cs" />
-    <Compile Include="FIX50SP1\ApplicationMessageRequestAck.cs" />
-    <Compile Include="FIX50SP1\AssignmentReport.cs" />
-    <Compile Include="FIX50SP1\BidRequest.cs" />
-    <Compile Include="FIX50SP1\BidResponse.cs" />
-    <Compile Include="FIX50SP1\BusinessMessageReject.cs" />
-    <Compile Include="FIX50SP1\CollateralAssignment.cs" />
-    <Compile Include="FIX50SP1\CollateralInquiry.cs" />
-    <Compile Include="FIX50SP1\CollateralInquiryAck.cs" />
-    <Compile Include="FIX50SP1\CollateralReport.cs" />
-    <Compile Include="FIX50SP1\CollateralRequest.cs" />
-    <Compile Include="FIX50SP1\CollateralResponse.cs" />
-    <Compile Include="FIX50SP1\Confirmation.cs" />
-    <Compile Include="FIX50SP1\ConfirmationAck.cs" />
-    <Compile Include="FIX50SP1\ConfirmationRequest.cs" />
-    <Compile Include="FIX50SP1\ContraryIntentionReport.cs" />
-    <Compile Include="FIX50SP1\CrossOrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX50SP1\CrossOrderCancelRequest.cs" />
-    <Compile Include="FIX50SP1\DerivativeSecurityList.cs" />
-    <Compile Include="FIX50SP1\DerivativeSecurityListRequest.cs" />
-    <Compile Include="FIX50SP1\DerivativeSecurityListUpdateReport.cs" />
-    <Compile Include="FIX50SP1\DontKnowTrade.cs" />
-    <Compile Include="FIX50SP1\Email.cs" />
-    <Compile Include="FIX50SP1\ExecutionAcknowledgement.cs" />
-    <Compile Include="FIX50SP1\ExecutionReport.cs" />
-    <Compile Include="FIX50SP1\IOI.cs" />
-    <Compile Include="FIX50SP1\ListCancelRequest.cs" />
-    <Compile Include="FIX50SP1\ListExecute.cs" />
-    <Compile Include="FIX50SP1\ListStatus.cs" />
-    <Compile Include="FIX50SP1\ListStatusRequest.cs" />
-    <Compile Include="FIX50SP1\ListStrikePrice.cs" />
-    <Compile Include="FIX50SP1\MarketDataIncrementalRefresh.cs" />
-    <Compile Include="FIX50SP1\MarketDataRequest.cs" />
-    <Compile Include="FIX50SP1\MarketDataRequestReject.cs" />
-    <Compile Include="FIX50SP1\MarketDataSnapshotFullRefresh.cs" />
-    <Compile Include="FIX50SP1\MarketDefinition.cs" />
-    <Compile Include="FIX50SP1\MarketDefinitionRequest.cs" />
-    <Compile Include="FIX50SP1\MarketDefinitionUpdateReport.cs" />
-    <Compile Include="FIX50SP1\MassQuote.cs" />
-    <Compile Include="FIX50SP1\MassQuoteAcknowledgement.cs" />
-    <Compile Include="FIX50SP1\Message.cs" />
-    <Compile Include="FIX50SP1\MessageFactory.cs" />
-    <Compile Include="FIX50SP1\MultilegOrderCancelReplace.cs" />
-    <Compile Include="FIX50SP1\NetworkCounterpartySystemStatusRequest.cs" />
-    <Compile Include="FIX50SP1\NetworkCounterpartySystemStatusResponse.cs" />
-    <Compile Include="FIX50SP1\NewOrderCross.cs" />
-    <Compile Include="FIX50SP1\NewOrderList.cs" />
-    <Compile Include="FIX50SP1\NewOrderMultileg.cs" />
-    <Compile Include="FIX50SP1\NewOrderSingle.cs" />
-    <Compile Include="FIX50SP1\News.cs" />
-    <Compile Include="FIX50SP1\OrderCancelReject.cs" />
-    <Compile Include="FIX50SP1\OrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX50SP1\OrderCancelRequest.cs" />
-    <Compile Include="FIX50SP1\OrderMassActionReport.cs" />
-    <Compile Include="FIX50SP1\OrderMassActionRequest.cs" />
-    <Compile Include="FIX50SP1\OrderMassCancelReport.cs" />
-    <Compile Include="FIX50SP1\OrderMassCancelRequest.cs" />
-    <Compile Include="FIX50SP1\OrderMassStatusRequest.cs" />
-    <Compile Include="FIX50SP1\OrderStatusRequest.cs" />
-    <Compile Include="FIX50SP1\PositionMaintenanceReport.cs" />
-    <Compile Include="FIX50SP1\PositionMaintenanceRequest.cs" />
-    <Compile Include="FIX50SP1\PositionReport.cs" />
-    <Compile Include="FIX50SP1\Quote.cs" />
-    <Compile Include="FIX50SP1\QuoteCancel.cs" />
-    <Compile Include="FIX50SP1\QuoteRequest.cs" />
-    <Compile Include="FIX50SP1\QuoteRequestReject.cs" />
-    <Compile Include="FIX50SP1\QuoteResponse.cs" />
-    <Compile Include="FIX50SP1\QuoteStatusReport.cs" />
-    <Compile Include="FIX50SP1\QuoteStatusRequest.cs" />
-    <Compile Include="FIX50SP1\RegistrationInstructions.cs" />
-    <Compile Include="FIX50SP1\RegistrationInstructionsResponse.cs" />
-    <Compile Include="FIX50SP1\RequestForPositions.cs" />
-    <Compile Include="FIX50SP1\RequestForPositionsAck.cs" />
-    <Compile Include="FIX50SP1\RFQRequest.cs" />
-    <Compile Include="FIX50SP1\SecurityDefinition.cs" />
-    <Compile Include="FIX50SP1\SecurityDefinitionRequest.cs" />
-    <Compile Include="FIX50SP1\SecurityDefinitionUpdateReport.cs" />
-    <Compile Include="FIX50SP1\SecurityList.cs" />
-    <Compile Include="FIX50SP1\SecurityListRequest.cs" />
-    <Compile Include="FIX50SP1\SecurityListUpdateReport.cs" />
-    <Compile Include="FIX50SP1\SecurityStatus.cs" />
-    <Compile Include="FIX50SP1\SecurityStatusRequest.cs" />
-    <Compile Include="FIX50SP1\SecurityTypeRequest.cs" />
-    <Compile Include="FIX50SP1\SecurityTypes.cs" />
-    <Compile Include="FIX50SP1\SettlementInstructionRequest.cs" />
-    <Compile Include="FIX50SP1\SettlementInstructions.cs" />
-    <Compile Include="FIX50SP1\SettlementObligationReport.cs" />
-    <Compile Include="FIX50SP1\TradeCaptureReport.cs" />
-    <Compile Include="FIX50SP1\TradeCaptureReportAck.cs" />
-    <Compile Include="FIX50SP1\TradeCaptureReportRequest.cs" />
-    <Compile Include="FIX50SP1\TradeCaptureReportRequestAck.cs" />
-    <Compile Include="FIX50SP1\TradingSessionList.cs" />
-    <Compile Include="FIX50SP1\TradingSessionListRequest.cs" />
-    <Compile Include="FIX50SP1\TradingSessionListUpdateReport.cs" />
-    <Compile Include="FIX50SP1\TradingSessionStatus.cs" />
-    <Compile Include="FIX50SP1\TradingSessionStatusRequest.cs" />
-    <Compile Include="FIX50SP1\UserNotification.cs" />
-    <Compile Include="FIX50SP1\UserRequest.cs" />
-    <Compile Include="FIX50SP1\UserResponse.cs" />
-    <Compile Include="FIX50SP2\AdjustedPositionReport.cs" />
-    <Compile Include="FIX50SP2\Advertisement.cs" />
-    <Compile Include="FIX50SP2\AllocationInstruction.cs" />
-    <Compile Include="FIX50SP2\AllocationInstructionAck.cs" />
-    <Compile Include="FIX50SP2\AllocationInstructionAlert.cs" />
-    <Compile Include="FIX50SP2\AllocationReport.cs" />
-    <Compile Include="FIX50SP2\AllocationReportAck.cs" />
-    <Compile Include="FIX50SP2\ApplicationMessageReport.cs" />
-    <Compile Include="FIX50SP2\ApplicationMessageRequest.cs" />
-    <Compile Include="FIX50SP2\ApplicationMessageRequestAck.cs" />
-    <Compile Include="FIX50SP2\AssignmentReport.cs" />
-    <Compile Include="FIX50SP2\BidRequest.cs" />
-    <Compile Include="FIX50SP2\BidResponse.cs" />
-    <Compile Include="FIX50SP2\BusinessMessageReject.cs" />
-    <Compile Include="FIX50SP2\CollateralAssignment.cs" />
-    <Compile Include="FIX50SP2\CollateralInquiry.cs" />
-    <Compile Include="FIX50SP2\CollateralInquiryAck.cs" />
-    <Compile Include="FIX50SP2\CollateralReport.cs" />
-    <Compile Include="FIX50SP2\CollateralRequest.cs" />
-    <Compile Include="FIX50SP2\CollateralResponse.cs" />
-    <Compile Include="FIX50SP2\Confirmation.cs" />
-    <Compile Include="FIX50SP2\ConfirmationAck.cs" />
-    <Compile Include="FIX50SP2\ConfirmationRequest.cs" />
-    <Compile Include="FIX50SP2\ContraryIntentionReport.cs" />
-    <Compile Include="FIX50SP2\CrossOrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX50SP2\CrossOrderCancelRequest.cs" />
-    <Compile Include="FIX50SP2\DerivativeSecurityList.cs" />
-    <Compile Include="FIX50SP2\DerivativeSecurityListRequest.cs" />
-    <Compile Include="FIX50SP2\DerivativeSecurityListUpdateReport.cs" />
-    <Compile Include="FIX50SP2\DontKnowTrade.cs" />
-    <Compile Include="FIX50SP2\Email.cs" />
-    <Compile Include="FIX50SP2\ExecutionAcknowledgement.cs" />
-    <Compile Include="FIX50SP2\ExecutionReport.cs" />
-    <Compile Include="FIX50SP2\IOI.cs" />
-    <Compile Include="FIX50SP2\ListCancelRequest.cs" />
-    <Compile Include="FIX50SP2\ListExecute.cs" />
-    <Compile Include="FIX50SP2\ListStatus.cs" />
-    <Compile Include="FIX50SP2\ListStatusRequest.cs" />
-    <Compile Include="FIX50SP2\ListStrikePrice.cs" />
-    <Compile Include="FIX50SP2\MarketDataIncrementalRefresh.cs" />
-    <Compile Include="FIX50SP2\MarketDataRequest.cs" />
-    <Compile Include="FIX50SP2\MarketDataRequestReject.cs" />
-    <Compile Include="FIX50SP2\MarketDataSnapshotFullRefresh.cs" />
-    <Compile Include="FIX50SP2\MarketDefinition.cs" />
-    <Compile Include="FIX50SP2\MarketDefinitionRequest.cs" />
-    <Compile Include="FIX50SP2\MarketDefinitionUpdateReport.cs" />
-    <Compile Include="FIX50SP2\MassQuote.cs" />
-    <Compile Include="FIX50SP2\MassQuoteAcknowledgement.cs" />
-    <Compile Include="FIX50SP2\Message.cs" />
-    <Compile Include="FIX50SP2\MessageFactory.cs" />
-    <Compile Include="FIX50SP2\MultilegOrderCancelReplace.cs" />
-    <Compile Include="FIX50SP2\NetworkCounterpartySystemStatusRequest.cs" />
-    <Compile Include="FIX50SP2\NetworkCounterpartySystemStatusResponse.cs" />
-    <Compile Include="FIX50SP2\NewOrderCross.cs" />
-    <Compile Include="FIX50SP2\NewOrderList.cs" />
-    <Compile Include="FIX50SP2\NewOrderMultileg.cs" />
-    <Compile Include="FIX50SP2\NewOrderSingle.cs" />
-    <Compile Include="FIX50SP2\News.cs" />
-    <Compile Include="FIX50SP2\OrderCancelReject.cs" />
-    <Compile Include="FIX50SP2\OrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX50SP2\OrderCancelRequest.cs" />
-    <Compile Include="FIX50SP2\OrderMassActionReport.cs" />
-    <Compile Include="FIX50SP2\OrderMassActionRequest.cs" />
-    <Compile Include="FIX50SP2\OrderMassCancelReport.cs" />
-    <Compile Include="FIX50SP2\OrderMassCancelRequest.cs" />
-    <Compile Include="FIX50SP2\OrderMassStatusRequest.cs" />
-    <Compile Include="FIX50SP2\OrderStatusRequest.cs" />
-    <Compile Include="FIX50SP2\PartyDetailsListReport.cs" />
-    <Compile Include="FIX50SP2\PartyDetailsListRequest.cs" />
-    <Compile Include="FIX50SP2\PositionMaintenanceReport.cs" />
-    <Compile Include="FIX50SP2\PositionMaintenanceRequest.cs" />
-    <Compile Include="FIX50SP2\PositionReport.cs" />
-    <Compile Include="FIX50SP2\Quote.cs" />
-    <Compile Include="FIX50SP2\QuoteCancel.cs" />
-    <Compile Include="FIX50SP2\QuoteRequest.cs" />
-    <Compile Include="FIX50SP2\QuoteRequestReject.cs" />
-    <Compile Include="FIX50SP2\QuoteResponse.cs" />
-    <Compile Include="FIX50SP2\QuoteStatusReport.cs" />
-    <Compile Include="FIX50SP2\QuoteStatusRequest.cs" />
-    <Compile Include="FIX50SP2\RegistrationInstructions.cs" />
-    <Compile Include="FIX50SP2\RegistrationInstructionsResponse.cs" />
-    <Compile Include="FIX50SP2\RequestForPositions.cs" />
-    <Compile Include="FIX50SP2\RequestForPositionsAck.cs" />
-    <Compile Include="FIX50SP2\RFQRequest.cs" />
-    <Compile Include="FIX50SP2\SecurityDefinition.cs" />
-    <Compile Include="FIX50SP2\SecurityDefinitionRequest.cs" />
-    <Compile Include="FIX50SP2\SecurityDefinitionUpdateReport.cs" />
-    <Compile Include="FIX50SP2\SecurityList.cs" />
-    <Compile Include="FIX50SP2\SecurityListRequest.cs" />
-    <Compile Include="FIX50SP2\SecurityListUpdateReport.cs" />
-    <Compile Include="FIX50SP2\SecurityStatus.cs" />
-    <Compile Include="FIX50SP2\SecurityStatusRequest.cs" />
-    <Compile Include="FIX50SP2\SecurityTypeRequest.cs" />
-    <Compile Include="FIX50SP2\SecurityTypes.cs" />
-    <Compile Include="FIX50SP2\SettlementInstructionRequest.cs" />
-    <Compile Include="FIX50SP2\SettlementInstructions.cs" />
-    <Compile Include="FIX50SP2\SettlementObligationReport.cs" />
-    <Compile Include="FIX50SP2\StreamAssignmentReport.cs" />
-    <Compile Include="FIX50SP2\StreamAssignmentReportACK.cs" />
-    <Compile Include="FIX50SP2\StreamAssignmentRequest.cs" />
-    <Compile Include="FIX50SP2\TradeCaptureReport.cs" />
-    <Compile Include="FIX50SP2\TradeCaptureReportAck.cs" />
-    <Compile Include="FIX50SP2\TradeCaptureReportRequest.cs" />
-    <Compile Include="FIX50SP2\TradeCaptureReportRequestAck.cs" />
-    <Compile Include="FIX50SP2\TradingSessionList.cs" />
-    <Compile Include="FIX50SP2\TradingSessionListRequest.cs" />
-    <Compile Include="FIX50SP2\TradingSessionListUpdateReport.cs" />
-    <Compile Include="FIX50SP2\TradingSessionStatus.cs" />
-    <Compile Include="FIX50SP2\TradingSessionStatusRequest.cs" />
-    <Compile Include="FIX50SP2\UserNotification.cs" />
-    <Compile Include="FIX50SP2\UserRequest.cs" />
-    <Compile Include="FIX50SP2\UserResponse.cs" />
-    <Compile Include="FIX50\AdjustedPositionReport.cs" />
-    <Compile Include="FIX50\Advertisement.cs" />
-    <Compile Include="FIX50\AllocationInstruction.cs" />
-    <Compile Include="FIX50\AllocationInstructionAck.cs" />
-    <Compile Include="FIX50\AllocationInstructionAlert.cs" />
-    <Compile Include="FIX50\AllocationReport.cs" />
-    <Compile Include="FIX50\AllocationReportAck.cs" />
-    <Compile Include="FIX50\AssignmentReport.cs" />
-    <Compile Include="FIX50\BidRequest.cs" />
-    <Compile Include="FIX50\BidResponse.cs" />
-    <Compile Include="FIX50\BusinessMessageReject.cs" />
-    <Compile Include="FIX50\CollateralAssignment.cs" />
-    <Compile Include="FIX50\CollateralInquiry.cs" />
-    <Compile Include="FIX50\CollateralInquiryAck.cs" />
-    <Compile Include="FIX50\CollateralReport.cs" />
-    <Compile Include="FIX50\CollateralRequest.cs" />
-    <Compile Include="FIX50\CollateralResponse.cs" />
-    <Compile Include="FIX50\Confirmation.cs" />
-    <Compile Include="FIX50\ConfirmationAck.cs" />
-    <Compile Include="FIX50\ConfirmationRequest.cs" />
-    <Compile Include="FIX50\ContraryIntentionReport.cs" />
-    <Compile Include="FIX50\CrossOrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX50\CrossOrderCancelRequest.cs" />
-    <Compile Include="FIX50\DerivativeSecurityList.cs" />
-    <Compile Include="FIX50\DerivativeSecurityListRequest.cs" />
-    <Compile Include="FIX50\DontKnowTrade.cs" />
-    <Compile Include="FIX50\Email.cs" />
-    <Compile Include="FIX50\ExecutionAcknowledgement.cs" />
-    <Compile Include="FIX50\ExecutionReport.cs" />
-    <Compile Include="FIX50\IOI.cs" />
-    <Compile Include="FIX50\ListCancelRequest.cs" />
-    <Compile Include="FIX50\ListExecute.cs" />
-    <Compile Include="FIX50\ListStatus.cs" />
-    <Compile Include="FIX50\ListStatusRequest.cs" />
-    <Compile Include="FIX50\ListStrikePrice.cs" />
-    <Compile Include="FIX50\MarketDataIncrementalRefresh.cs" />
-    <Compile Include="FIX50\MarketDataRequest.cs" />
-    <Compile Include="FIX50\MarketDataRequestReject.cs" />
-    <Compile Include="FIX50\MarketDataSnapshotFullRefresh.cs" />
-    <Compile Include="FIX50\MassQuote.cs" />
-    <Compile Include="FIX50\MassQuoteAcknowledgement.cs" />
-    <Compile Include="FIX50\Message.cs" />
-    <Compile Include="FIX50\MessageFactory.cs" />
-    <Compile Include="FIX50\MultilegOrderCancelReplace.cs" />
-    <Compile Include="FIX50\NetworkCounterpartySystemStatusRequest.cs" />
-    <Compile Include="FIX50\NetworkCounterpartySystemStatusResponse.cs" />
-    <Compile Include="FIX50\NewOrderCross.cs" />
-    <Compile Include="FIX50\NewOrderList.cs" />
-    <Compile Include="FIX50\NewOrderMultileg.cs" />
-    <Compile Include="FIX50\NewOrderSingle.cs" />
-    <Compile Include="FIX50\News.cs" />
-    <Compile Include="FIX50\OrderCancelReject.cs" />
-    <Compile Include="FIX50\OrderCancelReplaceRequest.cs" />
-    <Compile Include="FIX50\OrderCancelRequest.cs" />
-    <Compile Include="FIX50\OrderMassCancelReport.cs" />
-    <Compile Include="FIX50\OrderMassCancelRequest.cs" />
-    <Compile Include="FIX50\OrderMassStatusRequest.cs" />
-    <Compile Include="FIX50\OrderStatusRequest.cs" />
-    <Compile Include="FIX50\PositionMaintenanceReport.cs" />
-    <Compile Include="FIX50\PositionMaintenanceRequest.cs" />
-    <Compile Include="FIX50\PositionReport.cs" />
-    <Compile Include="FIX50\Quote.cs" />
-    <Compile Include="FIX50\QuoteCancel.cs" />
-    <Compile Include="FIX50\QuoteRequest.cs" />
-    <Compile Include="FIX50\QuoteRequestReject.cs" />
-    <Compile Include="FIX50\QuoteResponse.cs" />
-    <Compile Include="FIX50\QuoteStatusReport.cs" />
-    <Compile Include="FIX50\QuoteStatusRequest.cs" />
-    <Compile Include="FIX50\RegistrationInstructions.cs" />
-    <Compile Include="FIX50\RegistrationInstructionsResponse.cs" />
-    <Compile Include="FIX50\RequestForPositions.cs" />
-    <Compile Include="FIX50\RequestForPositionsAck.cs" />
-    <Compile Include="FIX50\RFQRequest.cs" />
-    <Compile Include="FIX50\SecurityDefinition.cs" />
-    <Compile Include="FIX50\SecurityDefinitionRequest.cs" />
-    <Compile Include="FIX50\SecurityDefinitionUpdateReport.cs" />
-    <Compile Include="FIX50\SecurityList.cs" />
-    <Compile Include="FIX50\SecurityListRequest.cs" />
-    <Compile Include="FIX50\SecurityListUpdateReport.cs" />
-    <Compile Include="FIX50\SecurityStatus.cs" />
-    <Compile Include="FIX50\SecurityStatusRequest.cs" />
-    <Compile Include="FIX50\SecurityTypeRequest.cs" />
-    <Compile Include="FIX50\SecurityTypes.cs" />
-    <Compile Include="FIX50\SettlementInstructionRequest.cs" />
-    <Compile Include="FIX50\SettlementInstructions.cs" />
-    <Compile Include="FIX50\TradeCaptureReport.cs" />
-    <Compile Include="FIX50\TradeCaptureReportAck.cs" />
-    <Compile Include="FIX50\TradeCaptureReportRequest.cs" />
-    <Compile Include="FIX50\TradeCaptureReportRequestAck.cs" />
-    <Compile Include="FIX50\TradingSessionList.cs" />
-    <Compile Include="FIX50\TradingSessionListRequest.cs" />
-    <Compile Include="FIX50\TradingSessionStatus.cs" />
-    <Compile Include="FIX50\TradingSessionStatusRequest.cs" />
-    <Compile Include="FIX50\UserRequest.cs" />
-    <Compile Include="FIX50\UserResponse.cs" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="FIX40\Generate.txt4" />
+    <None Include="FIX41\Generate.txt4" />
+    <None Include="FIX41\Message.txt4" />
+    <None Include="FIX42\Generate.txt4" />
+    <None Include="FIX43\Generate.txt4" />
+    <None Include="FIX44\Generate.txt4" />
+    <None Include="FIX50SP1\Generate.txt4" />
+    <None Include="FIX50SP2\Generate.txt4" />
+    <None Include="FIX50\Generate.txt4" />
+    <None Include="FIXT11\Generate.txt4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FIX40\Message.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Message.cs</LastGenOutput>
+      <DependentUpon>Generate.txt4</DependentUpon>
+    </Content>
+    <Content Include="FIX41\Message.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Message.cs</LastGenOutput>
+      <DependentUpon>Generate.txt4</DependentUpon>
+    </Content>
+    <Content Include="FIX42\Message.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Message.cs</LastGenOutput>
+      <DependentUpon>Generate.txt4</DependentUpon>
+    </Content>
+    <Content Include="FIX43\Message.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Message.cs</LastGenOutput>
+      <DependentUpon>Generate.txt4</DependentUpon>
+    </Content>
+    <Content Include="FIX44\Message.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Message.cs</LastGenOutput>
+      <DependentUpon>Generate.txt4</DependentUpon>
+    </Content>
+    <Content Include="FIX50SP1\Message.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Message.cs</LastGenOutput>
+      <DependentUpon>Generate.txt4</DependentUpon>
+    </Content>
+    <Content Include="FIX50SP2\Message.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Message.cs</LastGenOutput>
+      <DependentUpon>Generate.txt4</DependentUpon>
+    </Content>
+    <Content Include="FIX50\Message.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Message.cs</LastGenOutput>
+      <DependentUpon>Generate.txt4</DependentUpon>
+    </Content>
+    <Content Include="FIXT11\Message.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Message.cs</LastGenOutput>
+      <DependentUpon>Generate.txt4</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FIX40\Message.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Message.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\Advertisement.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\Allocation.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\AllocationACK.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\DontKnowTrade.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\Email.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\ExecutionReport.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\Heartbeat.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\IndicationofInterest.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\ListCancelRequest.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\ListExecute.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\ListStatus.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\ListStatusRequest.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\Logon.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\Logout.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\Message.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Message.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\MessageFactory.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\NewOrderList.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\NewOrderSingle.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\News.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\OrderCancelReject.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\OrderCancelReplaceRequest.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\OrderCancelRequest.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\OrderStatusRequest.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\Quote.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\QuoteRequest.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\Reject.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\ResendRequest.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\SequenceReset.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\SettlementInstructions.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX41\TestRequest.cs">
+      <DependentUpon>Message.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="FIX42\Message.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Message.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FIX43\Message.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Message.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FIX44\Message.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Message.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FIX50SP1\Message.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Message.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FIX50SP2\Message.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Message.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FIX50\Message.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Message.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FIXT11\Message.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Message.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

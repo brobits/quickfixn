@@ -184,7 +184,7 @@ public class TemplateFileManager
         {
             throw new ArgumentException("name");
         }
-
+		
         CurrentBlock = new Block 
 					  { 
 						Name = name, 
@@ -892,7 +892,8 @@ public class VSHelper
 		}
 		else if (prj != null && String.IsNullOrEmpty(block.FolderName) == false)
 		{
-			item = GetAllProjectItemsRecursive(prj.ProjectItems).Where(i=>i.Name == block.FolderName).First();
+			var items = GetAllProjectItemsRecursive(prj.ProjectItems).Where(i=>i.Name == block.FolderName);
+			item = items.First();
 		}
 		else if (String.IsNullOrEmpty(block.FolderName) == false)
 		{
@@ -1032,7 +1033,6 @@ public class VSHelper
         	{
             	yield return subItem;
         	}
-			
 			
         	yield return projectItem;
     	}

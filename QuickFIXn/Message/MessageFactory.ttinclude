@@ -1,0 +1,39 @@
+﻿<#manager.StartNewFile("MessageFactory.cs", "FixMessages", version);#>
+// This is a generated file.  Don't edit it directly!
+
+namespace QuickFix
+{
+	namespace <#=version#>
+	{
+		public class MessageFactory : IMessageFactory
+		{
+			public QuickFix.Message Create(string beginString, string msgType)
+			{
+				switch(msgType)
+				{
+<# foreach(var m in parser.Messages)
+   {#>
+					case QuickFix.<#=version#>.<#=m.Name#>.MsgType: return new QuickFix.<#=version#>.<#=m.Name#>();
+<#}#>
+				}
+
+				return new QuickFix.Message();
+			}
+
+			public Group Create(string beginString, string msgType, int correspondingFieldID)
+			{
+<# foreach(var m in parser.Messages.Where(m => m.Groups.Count > 0))
+   {#>
+				if(QuickFix.<#=version#>.<#=m.Name#>.MsgType.Equals(msgType))
+				{
+					switch(correspondingFieldID)
+					{
+						<#=string.Join("\n\t\t\t\t\t\t", m.GetGroupsByTag().Select(gbt => string.Format("case QuickFix.Fields.Tags.{0}: return new QuickFix.{1}.{2}();", gbt.Item1, version, gbt.Item2)).ToArray())#>
+					}
+				}
+<# }#>
+				return null;
+			}
+		}
+	}
+}
