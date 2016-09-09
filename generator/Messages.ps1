@@ -1,12 +1,15 @@
 . "generator/Utility.ps1"
+. "generator/Groups.ps1"
+
+[string]$messageFieldTemplate = Load-Template generator/templates/MessageField.cst 3
+[string]$messageTemplate = Load-Template generator/templates/Message.cst 0
 
 # generates all Message classes for a FIX specification
 function Generate-Message-Classes()
 {
     param($dd)
     [string]$fixVersion = Fix-Version $dd
-    [string]$template = Load-Template generator/templates/Message.cst 0
-    [string]$code = $template -replace "<#version#>", $fixVersion
+    [string]$template = $messageTemplate -replace "<#version#>", $fixVersion
     $out = @()
     $dd.messages.message | ForEach-Object {
         $m = $_
@@ -59,9 +62,19 @@ function Build-Constructor-Assignments()
 function Build-Message-Fields()
 {
     param($m)
+    $out = @()
+    $m.field | ForEach-Object {
+        $f = $_
+        $msgTemplate = $messageFieldTemplate -replace "<#msgFieldName#>", $f.name
+        $fieldName = if ($m.name -eq $f.name) { [string]::Format("{0}Field", $f.name) } else { $f.name }
+        $out += $msgTemplate -replace "<#msgFieldMember#>", $fieldName
+        $out += ""
+    }
+    Join-Lines $out
 }
 
 function Build-Message-Groups()
 {
     param($m)
+    Build-Group-Definitions $m
 }

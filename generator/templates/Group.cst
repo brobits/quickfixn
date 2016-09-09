@@ -1,0 +1,20 @@
+public class <#groupName#> : Group
+{
+    public static int[] fieldOrder = {<#fieldList#>, 0};
+
+    public <#groupName#>()
+        :base( Tags.<#countFieldName#>, Tags.<#firstFieldName#>, fieldOrder)
+    {
+    }
+
+    public override Group Clone()
+    {
+        var clone = new <#groupName#>();
+        clone.CopyStateFrom(this);
+        return clone;
+    }
+
+<#groupFields#>
+
+<#childGroups#>
+}

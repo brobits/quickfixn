@@ -1,12 +1,14 @@
 . "generator/Utility.ps1"
 
+[string]$messageGroupTemplate = Load-Template generator/templates/MessageGroup.cst 4
+[string]$messageFactoryTemplate = Load-Template generator/templates/MessageFactory.cst 0
+
 # generate a FIX specification's MessageFactory class
 function Generate-MessageFactory-Class()
 {
   param($dd)
   [string]$fixVersion = Fix-Version $dd
-  [string]$template = Load-Template generator/templates/MessageFactory.cst 0
-  [string]$code = $template -replace "<#version#>", $fixVersion
+  [string]$code = $messageFactoryTemplate -replace "<#version#>", $fixVersion
   $msgTypeCases = Build-Message-Type-Cases $dd
   [string]$code = $code -replace "<#msgTypeCases#>", $msgTypeCases
   $createMsgGroups = Build-Message-Groups $dd
@@ -62,8 +64,7 @@ function Build-Message-Groups()
 {
   param($dd)
   [string]$fixVersion = Fix-Version $dd
-  [string]$template = Load-Template generator/templates/MessageGroup.cst 4
-  $template = $template -replace "<#version#>", $fixVersion
+  $template = $messageGroupTemplate -replace "<#version#>", $fixVersion
   $out = @()
   $dd.messages.message | ForEach-Object {
     $cases = Build-Group-Cases $fixVersion $_.name $_
