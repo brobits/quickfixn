@@ -1,14 +1,25 @@
+using QuickFix.Fields;
 namespace QuickFix
 {
     namespace <#version#>
     {
-        public abstract class Message : QuickFix.Message
+        public class <#msgName#> : Message
         {
-            public Message()
-                : base()
+            public const string MsgType = "<#msgType#>";
+
+            public <#msgName#>() : base()
             {
-                this.Header.SetField(new QuickFix.Fields.BeginString(QuickFix.FixValues.BeginString.<#version#>));
+                this.Header.SetField(new QuickFix.Fields.MsgType(MsgType));
             }
+
+            public <#msgName#>(<#msgConstructorArguments#>) : this()
+            {
+<#msgConstructorAssignments#>
+            }
+
+<#msgFields#>
+
+<#msgGroups#>
         }
     }
 }

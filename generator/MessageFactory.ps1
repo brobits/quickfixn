@@ -24,7 +24,7 @@ function Build-Message-Type-Cases()
   $dd.messages.message | ForEach-Object {
     [string]$msgName = $_.name
     $case = [string]::Format("case QuickFix.{0}.{1}.MsgType: return new QuickFix.{0}.{1}();", $fixVersion, $msgName)
-    $out = Tabinate $case 5
+    $out = Tabinate-Lines $case 5
     $cases += Join-Lines $out
   }
   Join-Lines $cases
@@ -69,7 +69,7 @@ function Build-Message-Groups()
     $cases = Build-Group-Cases $fixVersion $_.name $_
     if ($cases.Count -gt 0) {
         $msgTemplate = $template -replace "<#msgName#>", $_.name
-        $out += ($msgTemplate -replace "<#msgGroupCases#>", (Join-Lines (Tabinate $cases 6)))
+        $out += ($msgTemplate -replace "<#msgGroupCases#>", (Join-Lines (Tabinate-Lines $cases 6)))
         $out += ""
     }
   }

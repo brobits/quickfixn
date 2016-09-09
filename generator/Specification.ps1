@@ -9,4 +9,5 @@ function Generate-Specification()
   param($dataDictionary)
   Generate-Message-Class $dataDictionary
   Generate-MessageFactory-Class $dataDictionary
+  Generate-Message-Classes $dataDictionary
 }

@@ -5,7 +5,7 @@ function Generate-Message-Class()
 {
   param($dd)
   [string]$fixVersion = Fix-Version $dd
-  [string]$template = Load-Template generator/templates/Message.cst 0
+  [string]$template = Load-Template generator/templates/MessageBase.cst 0
   [string]$code = $template -replace "<#version#>", $fixVersion
   [string]$path = [string]::Format("QuickFIXn/Message/{0}/Message.cs", $fixVersion)
   Write-Code $path $code

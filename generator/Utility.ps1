@@ -24,7 +24,7 @@ function Tabinate-Line()
 }
 
 # tabinate an array of lines by N tabs
-function Tabinate()
+function Tabinate-Lines()
 {
   param($data, [int]$tabcount)
   $out = @()
@@ -36,6 +36,23 @@ function Tabinate()
   }
   $lines | ForEach-Object {
     $out += Tabinate-Line $_ $tabcount
+  }
+  $out
+}
+
+# prepend lines with string
+function Prepend-Lines()
+{
+  param($data, [string]$pre)
+  $out = @()
+  $lines = @()
+  if ([int]$data.Count -eq 1) {
+    $lines += $data
+  } else {
+    $lines = $data
+  }
+  $lines | ForEach-Object {
+    $out += [string]::Format("{0}{1}", $pre, $_)
   }
   $out
 }
