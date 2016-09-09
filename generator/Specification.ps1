@@ -5,7 +5,7 @@ function Generate-Message-Class()
 {
   param($dd)
   [string]$fixVersion = Fix-Version $dd
-  [string]$template = Load-Template QuickFIXn/Templates/Message.cst 0
+  [string]$template = Load-Template generator/templates/Message.cst 0
   [string]$code = $template -replace "<%version%>", $fixVersion
   [string]$path = [string]::Format("QuickFIXn/Message/{0}/Message.cs", $fixVersion)
   Write-Code $path $code
@@ -56,7 +56,7 @@ function Generate-Message-Groups()
 {
   param($dd)
   [string]$fixVersion = Fix-Version $dd
-  [string]$template = Load-Template QuickFIXn/Templates/MessageGroup.cst 4
+  [string]$template = Load-Template generator/templates/MessageGroup.cst 4
   $template = $template -replace "<#version#>", $fixVersion
   $out = @()
   $dd.messages.message | ForEach-Object {
@@ -74,7 +74,7 @@ function Generate-MessageFactory-Class()
 {
   param($dd)
   [string]$fixVersion = Fix-Version $dd
-  [string]$template = Load-Template QuickFIXn/Templates/MessageFactory.cst 0
+  [string]$template = Load-Template generator/templates/MessageFactory.cst 0
   [string]$code = $template -replace "<#version#>", $fixVersion
   $msgTypeCases = Generate-Message-Type-Cases $dd
   [string]$code = $code -replace "<#msgTypeCases#>", $msgTypeCases
