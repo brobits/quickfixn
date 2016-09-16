@@ -176,26 +176,81 @@ function Build-Xml-Group()
             $child.AppendChild($childField) | Out-Null
         }
     }
-    #Write-Host "  searching for $($g.name) group components"
     Expand-Components $xml $g | Out-Null
     $child
+}
+
+function Process-Field() {
+    param($xml, $attr)
+    $child = $xml.CreateElement("field")
+    $attrName = $xml.CreateAttribute("name")
+    $attrName.Value = $attr.Get_Item("name")
+    $child.Attributes.Append($attrName) | Out-Null
+    $attrReqd = $xml.CreateAttribute("required")
+    $attrReqd.Value = $attr.Get_Item("required")
+    $child.Attributes.Append($attrReqd) | Out-Null
+    $child
+}
+
+function Process-Group() {
+    param($xml, $attr, $children)
+    # TODO may contain a component
+}
+
+function Process-Component() {
+    param($xml, $attr, $fields, $groups)
+    $name = $attr.Get_Item("name")
+    $set = $components.Get_Item($name)
+    if ($set.fields -ne $nil) {
+        $set.fields | ForEach-Object {
+            $fields += Build-Xml-Field $xml $_
+        }
+    }
+    if ($set.groups -ne $nil) {
+        $set.groups | ForEach-Object {
+            $groups += Build-Xml-Group $xml $_
+        }
+    }
 }
 
 function Expand-Components()
 {
     param($xml, $m)
+
+    $fields = @()
+    $groups = @()
+
+    $m.ChildNodes | ForEach-Object {
+        $tag = $_.LocalName
+        $attr = @{}
+        $_.Attributes | ForEach-Object {
+            $name = $_.Name
+            $val = $_.Value
+            $attr.Add($name, $val) | Out-Null
+        }
+        if ($tag -eq "field") {
+            $fields += Process-Field $xml $attr
+        }
+        if ($tag -eq "group") {
+            $groups += Process-Group $xml $attr $_.ChildNodes
+        }
+        if ($tag -eq "component") {
+            Process-Component $xml $attr $fields $groups | Out-Null
+        }
+    }
+
+    # TODO recombine
+
+    return
     # expand components
-    #Write-Host "expanding $($m.name) components ($($m.component.Count))"
     if ($m.component -ne $nil) {
         if (-Not ($m.component -is [system.array])) {
             $cs = @( $m.component )
         } else {
             $cs = $m.component
         }
-        #Write-Host "  # components: $($cs.Count)"
         $cs | ForEach-Object {
             $c = $_
-            #Write-Host "    component: $($c.name)"
             $set = $components.Get_Item($c.name)
             if ($set.fields -ne $nil) {
                 $set.fields | ForEach-Object {
@@ -205,16 +260,11 @@ function Expand-Components()
             }
             if ($set.groups -ne $nil) {
                 $set.groups | ForEach-Object {
-                    #Write-Host " ** processed group name: $($_.name)"
                     $child = Build-Xml-Group $xml $_
                     $m.AppendChild($child) | Out-Null
                 }
-            } else {
-                #Write-Host "      $($c.name) has no groups"
             }
         }
-    } else {
-        #Write-Host "  no components"
     }
     # recursively expand groups' components
     if ($m.group -ne $nil) {
@@ -224,7 +274,6 @@ function Expand-Components()
             $gs = $m.group
         }
         $gs | ForEach-Object {
-            #Write-Host "expanding $($m.name) child group $($_.name)"
             Expand-Components $xml $_ | Out-Null
         }
     }
@@ -238,7 +287,7 @@ function Get-Data-Dictionary() {
     $d = @{}
     $dd.messages.message | ForEach-Object {
         $m = $_
-        Expand-Components $xml $m | Out-Null
+        $m = Expand-Components $xml $m | Out-Null
     }
     #Write-Host "done with $($dd.major).$($dd.minor)"
     $dd
