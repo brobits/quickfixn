@@ -1,19 +1,35 @@
+# join an array of lines into a string
+function Join-Lines()
+{
+  param($arr)
+  [string]($arr -join "`n")
+}
+
+# tabinate a line by N tabs
+function Tabinate-Line()
+{
+  param($line, [int]$tabcount)
+  if ($line.StartsWith("<#")) { return $line }
+  [string]$sb = [string]""
+  For ($i = 0; $i -lt $tabcount; $i++) {
+    [string]$sb += [string]"    "
+  }
+  [string]$sb += [string]$line
+  $sb
+}
+
+# load a cst template from disk
+function Load-Template()
+{
+  param($path, [int]$tabcount)
+  $lines = @()
+  Get-Content -Path $path | ForEach-Object {
+    $lines += Tabinate-Line $_ $tabcount
+  }
+  Join-Lines $lines
+}
+
 [string]$messageFieldTemplate = Load-Template generator/templates/MessageField.cst 3
-
-# TODO
-function Build-Field() {
-    param($f)
-}
-
-# TODO
-function Build-Group() {
-    param($g)
-}
-
-# TODO
-function Build-Component() {
-    param($c)
-}
 
 # build a message field list from a message object
 function Build-Message-Fields()
@@ -35,38 +51,42 @@ function Load-Components()
 {
     param($dd)
     $components = @{}
-    $dd.components.component | ForEach-Object {
-        $c = $_
-        if (!$components.ContainsKey($c.name)) {
-            $code = Build-Message-Fields $c
-            $components.Add($c.name, $code)
+    if ($dd.components -ne $nil -And $dd.components.component -ne $nil) {
+        $dd.components.component | ForEach-Object {
+            $c = $_
+            if (-Not ($components.ContainsKey($c.name))) {
+                if ($c.field -ne $nil) {
+                    if (-Not ($c.field -is [system.array])) {
+                        $fs = @($c.field)
+                    } else {
+                        $fs = $c.field
+                    }
+                    $fields = @()
+                    $fs | ForEach-Object {
+                        $fields += $_
+                    }
+                } else {
+                    $fields = $nil
+                }
+                if ($c.group -ne $nil) {
+                    if (-Not ($c.group -is [system.array])) {
+                        $gs = @($c.group)
+                    } else {
+                        $gs = $c.group
+                    }
+                    $groups = @()
+                    $gs | ForEach-Object {
+                        $groups += $_
+                    }
+                } else {
+                    $groups = $nil
+                }
+                $set = @{ "fields" = $fields; "groups" = $groups }
+                $components.Add($c.name, $set) | Out-Null
+            }
         }
     }
     $components
-}
-
-# load a cst template from disk
-function Load-Template()
-{
-  param($path, [int]$tabcount)
-  $lines = @()
-  Get-Content -Path $path | ForEach-Object {
-    $lines += Tabinate-Line $_ $tabcount
-  }
-  Join-Lines $lines
-}
-
-# tabinate a line by N tabs
-function Tabinate-Line()
-{
-  param($line, [int]$tabcount)
-  if ($line.StartsWith("<#")) { return $line }
-  [string]$sb = [string]""
-  For ($i = 0; $i -lt $tabcount; $i++) {
-    [string]$sb += [string]"    "
-  }
-  [string]$sb += [string]$line
-  $sb
 }
 
 # tabinate an array of lines by N tabs
@@ -103,13 +123,6 @@ function Prepend-Lines()
   $out
 }
 
-# join an array of lines into a string
-function Join-Lines()
-{
-  param($arr)
-  [string]($arr -join "`n")
-}
-
 # extract FIX version from data dictionary
 function Fix-Version()
 {
@@ -127,4 +140,106 @@ function Write-Code()
   [string]$warning = "// This is a generated file.  Don't edit it directly!`n`n";
   [string]$out = [string]::Format("{0}{1}`n", $warning, $code)
   $status = New-Item $path -type file -force -value $out
+}
+
+function Build-Xml-Field()
+{
+    param($xml, $f)
+    [System.Xml.XmlElement]$child = $xml.CreateElement("field")
+    $attrName = $xml.CreateAttribute("name")
+    $attrName.Value = $f.name
+    $child.Attributes.Append($attrName) | Out-Null
+    $attrReqd = $xml.CreateAttribute("required")
+    $attrReqd.Value = $f.required
+    $child.Attributes.Append($attrReqd) | Out-Null
+    $child
+}
+
+function Build-Xml-Group()
+{
+    param($xml, $g)
+    $child = $xml.CreateElement("group")
+    $attrGroupName = $xml.CreateAttribute("name")
+    $attrGroupName.Value = $g.name
+    $child.Attributes.Append($attrGroupName) | Out-Null
+    $attrGroupReqd = $xml.CreateAttribute("required")
+    $attrGroupReqd.Value = $g.required
+    $child.Attributes.Append($attrGroupReqd) | Out-Null
+    if ($g.field -ne $nil) {
+        if (-Not ($g.field -is [system.array])) {
+            $gs = @($g.field)
+        } else {
+            $gs = $g.field
+        }
+        $gs | ForEach-Object {
+            [System.Xml.XmlElement]$childField = Build-Xml-Field $xml $_
+            $child.AppendChild($childField) | Out-Null
+        }
+    }
+    #Write-Host "  searching for $($g.name) group components"
+    Expand-Components $xml $g | Out-Null
+    $child
+}
+
+function Expand-Components()
+{
+    param($xml, $m)
+    # expand components
+    #Write-Host "expanding $($m.name) components ($($m.component.Count))"
+    if ($m.component -ne $nil) {
+        if (-Not ($m.component -is [system.array])) {
+            $cs = @( $m.component )
+        } else {
+            $cs = $m.component
+        }
+        #Write-Host "  # components: $($cs.Count)"
+        $cs | ForEach-Object {
+            $c = $_
+            #Write-Host "    component: $($c.name)"
+            $set = $components.Get_Item($c.name)
+            if ($set.fields -ne $nil) {
+                $set.fields | ForEach-Object {
+                    $child = Build-Xml-Field $xml $_
+                    $m.AppendChild($child) | Out-Null
+                }
+            }
+            if ($set.groups -ne $nil) {
+                $set.groups | ForEach-Object {
+                    #Write-Host " ** processed group name: $($_.name)"
+                    $child = Build-Xml-Group $xml $_
+                    $m.AppendChild($child) | Out-Null
+                }
+            } else {
+                #Write-Host "      $($c.name) has no groups"
+            }
+        }
+    } else {
+        #Write-Host "  no components"
+    }
+    # recursively expand groups' components
+    if ($m.group -ne $nil) {
+        if (-Not ($m.group -is [system.array])) {
+            $gs = @($m.group)
+        } else {
+            $gs = $m.group
+        }
+        $gs | ForEach-Object {
+            #Write-Host "expanding $($m.name) child group $($_.name)"
+            Expand-Components $xml $_ | Out-Null
+        }
+    }
+}
+
+# expand components in DD
+function Get-Data-Dictionary() {
+    param($xml)
+    $dd = $xml.fix
+    $components = Load-Components $dd
+    $d = @{}
+    $dd.messages.message | ForEach-Object {
+        $m = $_
+        Expand-Components $xml $m | Out-Null
+    }
+    #Write-Host "done with $($dd.major).$($dd.minor)"
+    $dd
 }

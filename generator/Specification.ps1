@@ -6,8 +6,9 @@
 
 function Generate-Specification()
 {
-  param($dataDictionary)
-  Generate-Message-Class $dataDictionary
-  Generate-MessageFactory-Class $dataDictionary
-  Generate-Message-Classes $dataDictionary
+  param($xml)
+  $dd = Get-Data-Dictionary $xml
+  Generate-Message-Class $dd
+  Generate-MessageFactory-Class $dd
+  Generate-Message-Classes $dd
 }
