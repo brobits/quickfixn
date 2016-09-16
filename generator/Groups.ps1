@@ -33,12 +33,28 @@ function Build-Group-Definition()
         $f = $_
         $fieldSet += [string]::Format("Tags.{0}", $f.name)
     }
+
     $fieldList = $fieldSet -join ", "
 
-    # TODO group fields list, child groups
+    # group fields
+    $groupFields = Build-Message-Fields $g
 
-    $groupFields = ""
-    $childGroups = ""
+    # child groups
+    $childSet = @()
+    $groups = @()
+    if ($g.group -ne $null) {
+        if ($g.group.Count -gt 0) {
+            $groups = $g.group
+        } else {
+            $groups += $g.group
+        }
+    }
+    if ($groups.Count -gt 0) {
+        $groups | ForEach-Object {
+            $childSet += Build-Group-Definition $_
+        }
+    }
+    $childGroups = Join-Lines $childSet
 
     # substitute templates
     $template = $groupTemplate -replace "<#countFieldName#>", $countFieldName

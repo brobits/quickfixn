@@ -1,7 +1,6 @@
 . "generator/Utility.ps1"
 . "generator/Groups.ps1"
 
-[string]$messageFieldTemplate = Load-Template generator/templates/MessageField.cst 3
 [string]$messageTemplate = Load-Template generator/templates/Message.cst 0
 
 # generates all Message classes for a FIX specification
@@ -57,20 +56,6 @@ function Build-Constructor-Assignments()
     }
     $tabs = Tabinate-Lines $assignments 4
     Join-Lines $tabs
-}
-
-function Build-Message-Fields()
-{
-    param($m)
-    $out = @()
-    $m.field | ForEach-Object {
-        $f = $_
-        $msgTemplate = $messageFieldTemplate -replace "<#msgFieldName#>", $f.name
-        $fieldName = if ($m.name -eq $f.name) { [string]::Format("{0}Field", $f.name) } else { $f.name }
-        $out += $msgTemplate -replace "<#msgFieldMember#>", $fieldName
-        $out += ""
-    }
-    Join-Lines $out
 }
 
 function Build-Message-Groups()

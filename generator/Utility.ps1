@@ -1,3 +1,49 @@
+[string]$messageFieldTemplate = Load-Template generator/templates/MessageField.cst 3
+
+# TODO
+function Build-Field() {
+    param($f)
+}
+
+# TODO
+function Build-Group() {
+    param($g)
+}
+
+# TODO
+function Build-Component() {
+    param($c)
+}
+
+# build a message field list from a message object
+function Build-Message-Fields()
+{
+    param($m)
+    $out = @()
+    $m.field | ForEach-Object {
+        $f = $_
+        $msgTemplate = $messageFieldTemplate -replace "<#msgFieldName#>", $f.name
+        $fieldName = if ($m.name -eq $f.name) { [string]::Format("{0}Field", $f.name) } else { $f.name }
+        $out += $msgTemplate -replace "<#msgFieldMember#>", $fieldName
+        $out += ""
+    }
+    Join-Lines $out
+}
+
+# load FIX data dicitonary component macros from a data dictionary
+function Load-Components()
+{
+    param($dd)
+    $components = @{}
+    $dd.components.component | ForEach-Object {
+        $c = $_
+        if (!$components.ContainsKey($c.name)) {
+            $code = Build-Message-Fields $c
+            $components.Add($c.name, $code)
+        }
+    }
+    $components
+}
 
 # load a cst template from disk
 function Load-Template()
