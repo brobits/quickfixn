@@ -46,6 +46,42 @@ function Build-Message-Fields()
     Join-Lines $out
 }
 
+# for loading component groups
+function Build-Group() {
+    param($g)
+    $attr = @{}
+    $g.Attributes | ForEach-Object {
+        $name = $_.Name
+        $val = $_.Value
+        $attr.Add($name, $val) | Out-Null
+    }
+    $fields = @()
+    $groups = @()
+    $g.ChildNodes | ForEach-Object {
+        $tag = $_.LocalName
+        if ($tag -eq "field") {
+            $fields += Build-Field $_
+        }
+        if ($tag -eq "group") {
+            $groups += Build-Group $_
+        }
+        # no nested components
+    }
+    @{ "name" = $attr["name"]; "required" = $attr["required"]; "fields" = $fields; "groups" = $groups }
+}
+
+# returns field object, leaf node
+function Build-Field() {
+    param($f)
+    $attr = @{}
+    $f.Attributes | ForEach-Object {
+        $name = $_.Name
+        $val = $_.Value
+        $attr.Add($name, $val) | Out-Null
+    }
+    @{ "name" = $attr["name"]; "required" = $attr["required"] }
+}
+
 # load FIX data dicitonary component macros from a data dictionary
 function Load-Components()
 {
@@ -54,6 +90,8 @@ function Load-Components()
     if ($dd.components -ne $nil -And $dd.components.component -ne $nil) {
         $dd.components.component | ForEach-Object {
             $c = $_
+            $fields = @()
+            $groups = @()
             if (-Not ($components.ContainsKey($c.name))) {
                 if ($c.field -ne $nil) {
                     if (-Not ($c.field -is [system.array])) {
@@ -61,12 +99,9 @@ function Load-Components()
                     } else {
                         $fs = $c.field
                     }
-                    $fields = @()
                     $fs | ForEach-Object {
-                        $fields += $_
+                        $fields += Build-Field $_
                     }
-                } else {
-                    $fields = $nil
                 }
                 if ($c.group -ne $nil) {
                     if (-Not ($c.group -is [system.array])) {
@@ -74,12 +109,9 @@ function Load-Components()
                     } else {
                         $gs = $c.group
                     }
-                    $groups = @()
                     $gs | ForEach-Object {
-                        $groups += $_
+                        $groups += Build-Group $_
                     }
-                } else {
-                    $groups = $nil
                 }
                 $set = @{ "fields" = $fields; "groups" = $groups }
                 $components.Add($c.name, $set) | Out-Null
@@ -142,85 +174,25 @@ function Write-Code()
   $status = New-Item $path -type file -force -value $out
 }
 
-function Build-Xml-Field()
-{
-    param($xml, $f)
-    [System.Xml.XmlElement]$child = $xml.CreateElement("field")
-    $attrName = $xml.CreateAttribute("name")
-    $attrName.Value = $f.name
-    $child.Attributes.Append($attrName) | Out-Null
-    $attrReqd = $xml.CreateAttribute("required")
-    $attrReqd.Value = $f.required
-    $child.Attributes.Append($attrReqd) | Out-Null
-    $child
-}
+# build a non-leaf object (message or group)
+function Build-Object() {
+    param($o)
 
-function Build-Xml-Group()
-{
-    param($xml, $g)
-    $child = $xml.CreateElement("group")
-    $attrGroupName = $xml.CreateAttribute("name")
-    $attrGroupName.Value = $g.name
-    $child.Attributes.Append($attrGroupName) | Out-Null
-    $attrGroupReqd = $xml.CreateAttribute("required")
-    $attrGroupReqd.Value = $g.required
-    $child.Attributes.Append($attrGroupReqd) | Out-Null
-    if ($g.field -ne $nil) {
-        if (-Not ($g.field -is [system.array])) {
-            $gs = @($g.field)
-        } else {
-            $gs = $g.field
-        }
-        $gs | ForEach-Object {
-            [System.Xml.XmlElement]$childField = Build-Xml-Field $xml $_
-            $child.AppendChild($childField) | Out-Null
-        }
+    $objAttr = @{}
+    $o.Attributes | ForEach-Object {
+        $name = $_.Name
+        $val = $_.Value
+        $objAttr.Add($name, $val) | Out-Null
     }
-    Expand-Components $xml $g | Out-Null
-    $child
-}
 
-function Process-Field() {
-    param($xml, $attr)
-    $child = $xml.CreateElement("field")
-    $attrName = $xml.CreateAttribute("name")
-    $attrName.Value = $attr.Get_Item("name")
-    $child.Attributes.Append($attrName) | Out-Null
-    $attrReqd = $xml.CreateAttribute("required")
-    $attrReqd.Value = $attr.Get_Item("required")
-    $child.Attributes.Append($attrReqd) | Out-Null
-    $child
-}
-
-function Process-Group() {
-    param($xml, $attr, $children)
-    # TODO may contain a component
-}
-
-function Process-Component() {
-    param($xml, $attr, $fields, $groups)
-    $name = $attr.Get_Item("name")
-    $set = $components.Get_Item($name)
-    if ($set.fields -ne $nil) {
-        $set.fields | ForEach-Object {
-            $fields += Build-Xml-Field $xml $_
-        }
-    }
-    if ($set.groups -ne $nil) {
-        $set.groups | ForEach-Object {
-            $groups += Build-Xml-Group $xml $_
-        }
-    }
-}
-
-function Expand-Components()
-{
-    param($xml, $m)
+    $obj = @{ "name" = $objAttr["name"] }
 
     $fields = @()
     $groups = @()
 
-    $m.ChildNodes | ForEach-Object {
+    # walk XML tags and build a set of fields and groups, expanding component tags
+    # in the process
+    $o.ChildNodes | ForEach-Object {
         $tag = $_.LocalName
         $attr = @{}
         $_.Attributes | ForEach-Object {
@@ -229,66 +201,48 @@ function Expand-Components()
             $attr.Add($name, $val) | Out-Null
         }
         if ($tag -eq "field") {
-            $fields += Process-Field $xml $attr
+            $fields += Build-Field $_
         }
         if ($tag -eq "group") {
-            $groups += Process-Group $xml $attr $_.ChildNodes
+            $groups += Build-Object $_
         }
         if ($tag -eq "component") {
-            Process-Component $xml $attr $fields $groups | Out-Null
-        }
-    }
-
-    # TODO recombine
-
-    return
-    # expand components
-    if ($m.component -ne $nil) {
-        if (-Not ($m.component -is [system.array])) {
-            $cs = @( $m.component )
-        } else {
-            $cs = $m.component
-        }
-        $cs | ForEach-Object {
-            $c = $_
-            $set = $components.Get_Item($c.name)
+            # substitute component lookups
+            $set = $components.Get_Item($_.Name)
             if ($set.fields -ne $nil) {
                 $set.fields | ForEach-Object {
-                    $child = Build-Xml-Field $xml $_
-                    $m.AppendChild($child) | Out-Null
+                    $fields += $_
                 }
             }
             if ($set.groups -ne $nil) {
                 $set.groups | ForEach-Object {
-                    $child = Build-Xml-Group $xml $_
-                    $m.AppendChild($child) | Out-Null
+                    $groups += $_
                 }
             }
         }
     }
-    # recursively expand groups' components
-    if ($m.group -ne $nil) {
-        if (-Not ($m.group -is [system.array])) {
-            $gs = @($m.group)
-        } else {
-            $gs = $m.group
-        }
-        $gs | ForEach-Object {
-            Expand-Components $xml $_ | Out-Null
-        }
+
+    if ($objAttr.ContainsKey("required")) {
+        $obj | Add-Member "required" $objAttr["required"]
     }
+    if ($objAttr.ContainsKey("msgtype")) {
+        $obj | Add-Member "msgtype" $objAttr["msgtype"]
+    }
+    $obj | Add-Member "fields" $fields
+    $obj | Add-Member "groups" $groups
+    $obj
 }
 
 # expand components in DD
 function Get-Data-Dictionary() {
     param($xml)
+    $fixVersion = Fix-Version $xml
+    Write-Host "using FIX version $($fixVersion)"
     $dd = $xml.fix
     $components = Load-Components $dd
-    $d = @{}
+    $messages = @()
     $dd.messages.message | ForEach-Object {
-        $m = $_
-        $m = Expand-Components $xml $m | Out-Null
+        $messages += Build-Object $_
     }
-    #Write-Host "done with $($dd.major).$($dd.minor)"
-    $dd
+    @{ "messages" = $messages; "version" = $fixVersion }
 }

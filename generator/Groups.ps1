@@ -6,18 +6,8 @@ function Build-Group-Definitions()
 {
     param($o)
     $definitions = @()
-    $groups = @()
-    if ($o.group -ne $null) {
-        if ($o.group.Count -gt 0) {
-            $groups = $o.group
-        } else {
-            $groups += $o.group
-        }
-    }
-    if ($groups.Count -gt 0) {
-        $groups | ForEach-Object {
-            $definitions += Build-Group-Definition $_
-        }
+    $o["groups"] | ForEach-Object {
+        $definitions += Build-Group-Definition $_
     }
     Join-Lines $definitions
 }
@@ -25,13 +15,14 @@ function Build-Group-Definitions()
 function Build-Group-Definition()
 {
     param($g)
-    $groupName = [string]::Format("{0}Group", $g.name)
-    $countFieldName = $g.name
-    $firstFieldName = $g.field[0].name
+    Write-Host "building group definition"
+    $groupName = [string]::Format("{0}Group", $g["name"])
+    $countFieldName = $g["name"]
+    $firstFieldName = $g["fields"][0]["name"]
     $fieldSet = @()
-    $g.field | ForEach-Object {
+    $g.fields | ForEach-Object {
         $f = $_
-        $fieldSet += [string]::Format("Tags.{0}", $f.name)
+        $fieldSet += [string]::Format("Tags.{0}", $f["name"])
     }
 
     $fieldList = $fieldSet -join ", "
@@ -41,18 +32,8 @@ function Build-Group-Definition()
 
     # child groups
     $childSet = @()
-    $groups = @()
-    if ($g.group -ne $null) {
-        if ($g.group.Count -gt 0) {
-            $groups = $g.group
-        } else {
-            $groups += $g.group
-        }
-    }
-    if ($groups.Count -gt 0) {
-        $groups | ForEach-Object {
-            $childSet += Build-Group-Definition $_
-        }
+    $g.groups | ForEach-Object {
+        $childSet += Build-Group-Definition $_
     }
     $childGroups = Join-Lines $childSet
 
